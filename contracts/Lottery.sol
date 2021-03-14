@@ -8,28 +8,28 @@ contract Lottery {
         manager = msg.sender;
     }
 
-    function enter() public payable {
-        require(msg.value > 0.01 ether);
-        participants.push(msg.sender);
-    }
+    // function enter() public payable {
+    //     require(msg.value > 0.01 ether);
+    //     participants.push(msg.sender);
+    // }
 
-    // Not really random
-    function random() private view returns (uint256) {
-        return uint256(sha3(block.difficulty, now, participants));
-    }
+    // // Not really random
+    // function random() private view returns (uint256) {
+    //     return uint256(sha3(block.difficulty, now, participants));
+    // }
 
-    function pickWinner() public restricted {
-        uint256 index = random % participants.length;
-        participants[index].transfer(this.balance);
-        participants = new address[](0);
-    }
+    // function pickWinner() public restricted {
+    //     uint256 index = random % participants.length;
+    //     participants[index].transfer(this.balance);
+    //     participants = new address[](0);
+    // }
 
-    function returnParticipants() public view returns (address[]) {
-        return participants;
-    }
+    // function returnParticipants() public view returns (address[]) {
+    //     return participants;
+    // }
 
-    modifier restricted() {
-        require(msg.sender == manager);
-        _;
-    }
+    // modifier restricted() {
+    //     require(msg.sender == manager);
+    //     _;
+    // }
 }
